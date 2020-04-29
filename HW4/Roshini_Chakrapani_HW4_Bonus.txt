@@ -1,0 +1,52 @@
+BONUS:
+
+1)
+bonusGraph = TinkerGraph.open().traversal()
+
+bonusGraph.addV("course").property(id, "CS101").property("courseCode", "CS101").as("CS101").addV("course").property(id, "CS201").property("courseCode", "CS201").as("CS201").addV("course").property(id, "CS220").property("courseCode", "CS220").as("CS220").addV("course").property(id, "CS334").property("courseCode", "CS334").as("CS334").addV("course").property(id, "CS420").property("courseCode", "CS420").as("CS420").addV("course").property(id, "CS681").property("courseCode", "CS681").as("CS681").addV("course").property(id, "CS400").property("courseCode", "CS400").as("CS400").addV("course").property(id, "CS526").property("courseCode","CS526").as("CS526").addE("pre-requisite").from("CS201").to("CS101").addE("pre-requisite").from("CS220").to("CS201").addE("pre-requisite").from("CS334").to("CS201").addE("pre-requisite").from("CS420").to("CS220").addE("co-requisite").from("CS420").to("CS220").addE("pre-requisite").from("CS681").to("CS334").addE("pre-requisite").from("CS400").to("CS334").addE("pre-requisite").from("CS526").to("CS400").addE("co-requisite").from("CS526").to("CS400").iterate()
+
+bonusGraph
+bonusGraph.V()
+bonusGraph.E()
+
+Explanation:
+Creates the same graph but with two statements
+addV() - adds vertices with any property we need. Here we have two properties id and courseCode.
+addE() - adds edges between two vertices using from() and to(). Here each edge has a property id which uniquely identifies an edge.
+
+2)
+bonusGraph.V().as("a").outE().inV().as("b").select("a", "b").groupCount().unfold().filter(select(values).is(eq(2))).select(keys)
+
+Explanation:
+For each vertex 'a', get the outgoing edges and incoming vertex 'b' of the edge, select the vertices set such that the number of edges between them is exactly 2 (doubly-connected edges).
+
+outE() - gets all outgoing edges for a vertex.
+inV() - gets the incoming vertex of the edge.
+groupCount() - generates a hash with the vertices set as key and number of edges between them as value.
+unfold() - breaks apart the list to get the pair of vertices.
+filter() - filters according to the given condition.
+select(values).is(eq(2)) - select values that are equal to 2.
+
+3)
+bonusGraph.V().has("courseCode","CS526").repeat(out().dedup()).emit()
+
+Explanation:
+Returns vertices that are ancestors to a particular courseCode
+
+has() - vertex that has a courseCode, say 'CS526'
+repeat(out().dedup()) - loops through the traversal of all outgoing edges that are pre-requisite without duplicates to find the ancestors
+emit() - emits the ancestors
+
+4)
+bonusGraph.V().has("courseCode","CS101").emit().repeat(__.in()).tail(1).path().unfold().count()
+
+Explanation:
+Returns the count of vertices in the path from the given vertex to the end vertex, ie, the farthest leaf from the given vertex. It returns the maximum depth from the given vertex.
+
+repeat(__.in()) -  loop through all incoming edges for a particular vertex
+tail(1) - return only the first value, similar tot the limit query
+path() - returns the path from the given vertex to the end
+unfold() - breaks the list to get the vertices
+count() - counts the number of vertices in the path.
+
+

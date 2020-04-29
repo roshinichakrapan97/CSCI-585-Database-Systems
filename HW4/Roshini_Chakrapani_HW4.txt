@@ -1,0 +1,84 @@
+1)
+courseGraph = TinkerGraph.open()
+g = courseGraph.traversal()
+
+v1 = g.addV("course").property(id, "CS101").property("courseCode", "CS101").next()
+v2 = g.addV("course").property(id, "CS201").property("courseCode", "CS201").next()
+v3 = g.addV("course").property(id, "CS220").property("courseCode", "CS220").next()
+v4 = g.addV("course").property(id, "CS334").property("courseCode", "CS334").next()
+v5 = g.addV("course").property(id, "CS420").property("courseCode", "CS420").next()
+v6 = g.addV("course").property(id, "CS681").property("courseCode", "CS681").next()
+v7 = g.addV("course").property(id, "CS400").property("courseCode", "CS400").next()
+v8 = g.addV("course").property(id, "CS526").property("courseCode", "CS526").next()
+
+g.addE("pre-requisite").from(v2).to(v1).property(id, 1)
+g.addE("pre-requisite").from(v3).to(v2).property(id, 2)
+g.addE("pre-requisite").from(v4).to(v2).property(id, 3)
+g.addE("pre-requisite").from(v5).to(v3).property(id, 4)
+g.addE("co-requisite").from(v5).to(v3).property(id, 5)
+g.addE("pre-requisite").from(v6).to(v4).property(id, 6)
+g.addE("pre-requisite").from(v7).to(v4).property(id, 7)
+g.addE("pre-requisite").from(v8).to(v7).property(id, 8)
+g.addE("co-requisite").from(v8).to(v7).property(id, 9)
+
+
+g
+g.V()
+g.E()
+
+
+Explanation:
+Creates a graph with 8 vertices and 9 edges as mentioned in the homework description.
+
+Initially, we create an empty graph with 0 vertices and 0 edges. 
+'g' is the graph traversal reference.
+addV() - adds vertices with any property we need. Here we have two properties id and courseCode.
+addE() - addes edges between two vertices using from() and to(). Here each edge has a property id which uniquely identifies an edge.
+Finally, the graph will have 8 vertices and 9 edges after running the above commands.
+
+
+V() - returns vertices of the graph
+E() - returns edges of the graph
+
+
+
+2)
+g.V().as("a").outE().inV().as("b").select("a", "b").groupCount().unfold().filter(select(values).is(eq(2))).select(keys)
+
+Explanation:
+For each vertex 'a', get the outgoing edges and incoming vertex 'b' of the edge, select the vertices set such that the number of edges between them is exactly 2 (doubly-connected edges).
+
+outE() - gets all outgoing edges for a vertex.
+inV() - gets the incoming vertex of the edge.
+groupCount() - generates a hash with the vertices set as key and number of edges between them as value.
+unfold() - breaks apart the list to get the pair of vertices.
+filter() - filters according to the given condition.
+select(values).is(eq(2)) - select values that are equal to 2.
+
+
+3)
+g.V("CS526").repeat(out().dedup()).emit()
+g.V().has("courseCode","CS526").repeat(out().dedup()).emit()
+g.V().has(id,"CS526").repeat(out().dedup()).emit()
+
+Explanation:
+Returns vertices that are ancestors to a particular courseCode
+
+has() - vertex that has a courseCode, say 'CS526'
+repeat(out().dedup()) - loops through the traversal of all outgoing edges without duplicates to find the ancestors
+emit() - emits the ancestors
+
+
+4)
+g.V("CS101").emit().repeat(__.in()).tail(1).path().unfold().count()
+g.V().has("courseCode","CS101").emit().repeat(__.in()).tail(1).path().unfold().count()
+g.V().has(id,"CS101").emit().repeat(__.in()).tail(1).path().unfold().count()
+
+Explanation:
+Returns the count of vertices in the path from the given vertex to the end vertex, ie, the farthest leaf from the given vertex. It returns the maximum depth from the given vertex.
+
+repeat(__.in()) -  loop throgh all incoming edges for a particular vertex
+tail(1) - return only the first value, similar tot the limit query
+path() - returns the path from the given vertex to the end
+unfold() - breaks the list to get the vertices
+count() - counts the number of vertices in the path.
