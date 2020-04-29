@@ -1,0 +1,38 @@
+PROB 1:
+The departure date can be entered in a wrong way, which might be earlier than the arrival date.
+
+SOLUTION:
+Let us introduce a constraint in the table creation . The CHECK Constraint will compare the arrival date and departure date and makes sure that the arrivalDate < DepartureDate.
+
+QUERY:
+CREATE TABLE HotelStays 
+(roomNum INTEGER NOT NULL,
+ arrDate DATE NOT NULL, 
+ depDate DATE NOT NULL, 
+ guestName CHAR(30) NOT NULL,
+ CHECK ( arrogate < depDate) 
+ PRIMARY KEY (roomNum, arrDate)
+);
+
+
+PROB 2:
+New Entry for checking in guest can be mistakenly put in for the room number , even before the existing guest has checked out from that room.
+
+SOLUTION:
+Approach 1:
+Insert into the table only when the given arrival date for a particular room is greater than the maximum departure date for that room.
+
+QUERY:
+INSERT INTO HotelStays (roomNum, arrDate, depDate, guestName) 
+SELECT (123, '2019-01-01', '2019-01-10','Roshini') 
+WHERE arrDate >= (SELECT max(m.depDate) 
+FROM HotelStays m 
+WHERE m.roomNum = roomNum);
+
+OR
+Approach 2:
+Create another table named ‘Bookings’ with all the rooms and have a mark that says ‘Occupied’ or ‘Vacant’.
+Update this table every time a row is inserted into the HotelStays table using a procedure.
+Upon Inserting a new entry, check if that room is vacant from the ‘Bookings’ Table and then insert.
+
+
