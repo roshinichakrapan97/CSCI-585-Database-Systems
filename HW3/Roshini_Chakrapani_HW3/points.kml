@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+<Style id="z1">
+<IconStyle><Icon><href>http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png</href></Icon></IconStyle>
+</Style>
+<Placemark><name>Century Apts</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.28953,34.026288</coordinates></Point>
+</Placemark>
+<Placemark><name>Uytengsu AC</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.28846,34.022247</coordinates></Point>
+</Placemark>
+<Placemark><name>Annenberg Hall</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.286045,34.020237</coordinates></Point>
+</Placemark>
+<Placemark><name>SGM 123</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.289162,34.021225</coordinates></Point>
+</Placemark>
+<Placemark><name>Residential College</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.290087,34.019177</coordinates></Point>
+</Placemark>
+<Placemark><name>Rock Reilly</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.284268,34.024277</coordinates></Point>
+</Placemark>
+<Placemark><name>Mudd Hall</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.2862,34.019064</coordinates></Point>
+</Placemark>
+<Placemark><name>USC Hotel</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.281460,34.019176</coordinates></Point>
+</Placemark>
+<Placemark><name>Popovich Hall</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.283872,34.018608</coordinates></Point>
+</Placemark>
+<Placemark><name>Amy King</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.283803,34.022277</coordinates></Point>
+</Placemark>
+<Placemark><name>Galen Center</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.280614,34.021615</coordinates></Point>
+</Placemark>
+<Placemark><name>Spot Home</name>
+    <styleUrl>#z1</styleUrl><Point><coordinates>-118.280154,34.026482</coordinates></Point>
+</Placemark>
+
+<Placemark> 
+<Polygon><outerBoundaryIs><LinearRing>  
+<coordinates>
+-118.283872,34.018608
+-118.285446,34.018699
+-118.290359,34.019156
+-118.28953,34.026288
+-118.280154,34.02648
+-118.280614,34.021615
+-118.28146,34.019176
+-118.283872,34.018608
+</coordinates>
+</LinearRing></outerBoundaryIs></Polygon>
+<Style> 
+<PolyStyle>
+<color>88000088</color>
+<fill>0</fill>
+    <outline>1</outline>
+  </PolyStyle> 
+  <LineStyle>
+    <color>ff00ffff</color> 
+    <width>1.5</width>
+   </LineStyle>
+ </Style>
+</Placemark>
+<Placemark>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <coordinates>-118.280154,34.026482 -118.284268,34.024277</coordinates>
+      </LineString>
+      <Style><LineStyle>
+        <color>ff00ff00</color>
+        <width>2</width>
+      </LineStyle></Style>
+</Placemark>
+
+<Placemark>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <coordinates>-118.280154,34.026482 -118.280614,34.021615</coordinates>
+      </LineString>
+      <Style><LineStyle>
+        <color>ff00ff00</color>
+        <width>2</width>
+      </LineStyle></Style>
+</Placemark>
+
+
+<Placemark>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <coordinates>-118.280154,34.026482 -118.283803,34.022277</coordinates>
+      </LineString>
+      <Style><LineStyle>
+        <color>ff00ff00</color>
+        <width>2</width>
+      </LineStyle></Style>
+</Placemark>
+
+
+<Placemark>
+      <LineString>
+        <extrude>1</extrude>
+        <tessellate>1</tessellate>
+        <coordinates>-118.280154,34.026482 -118.281460,34.019176</coordinates>
+      </LineString>
+      <Style><LineStyle>
+        <color>ff00ff00</color>
+        <width>2</width>
+      </LineStyle></Style>
+</Placemark>
+
+
+</Document></kml>
+
+
